@@ -1,0 +1,356 @@
+\l :- Shows the list of databases
+
+                                                              Database?:=It is a collection of Table
+\q:- to exit from the shell of the postgres
+                                                                   sudo service postgresql restart
+\du:- Show list of user and their role
+
+To Create User:-
+  CREATE USER {NAME] WITH PASSWORD '{password}'
+     ex:= CREATE USER ayasbase WITH PASSWORD '1234';
+To Create the database:-
+  CREATE DATABASE {NAME};
+     EX=>CREATE DATABASE ayas; 
+
+
+To give permission to user:-
+  GRANT ALL PRIVILEGES ON DATABASE {BASE NAME } to {USER NAME} ;
+     ex:=GRANT ALL PRIVILEGES ON DATABASE ayas to ayasbase;
+  
+We provides different types of privilege instead of ALL :-
+1)INSERT:-
+2)SELECT:-
+3)UPDATE:-
+4)DELETE
+
+
+To delete Database:-
+
+  DROP DATABASE {DATABASE NAME};
+    EX:-DROP DATABASE ayas;
+
+ To connect to database:-
+  \c {DataBase}                                                    //How many types of datatype will be accepted in database
+
+DataBase:-It is a Collection of Tables;
+
+To Crate Table:-
+
+   CREATE TABLE [table-name](
+        [table- column-name] [datatype(only one type of value will be embedded)] NOT NULLL,
+        [next-column-name]   [datatyope   ""   ""  "".....                   ...],
+        .
+        .
+        .             
+        .
+        );
+     
+           EXAMPLE:-CREATE TABLE COMPANY(
+                ID  INT NOT NULL,
+                NAME TEXT NOT NULL,
+                AGE INT,
+                ADDRESS CHAR(50),
+                SALARY REAL,
+                JOIN_DATE DATE);
+CREATE TABLE
+
+
+
+
+
+
+\d:-Show the tables
+\d {name}:-then it will AND WHAT IS INSIDE
+
+To Delete the DataBase:-
+ DROP TABLE {NAME];
+   EX:-DROP TABLE COMPANY;
+
+
+
+          2nd Day:-
+
+   database:-Like drive 
+    and we make folder init by schema.Schema is like folder in database(1)We give only one folder excess to someone
+                                                                         2)It will organize it.)
+
+    
+  CREATE SCHEMA [NAME]    //Schema means  folders inside database
+    ex:-CREATE SCHEMA mySchema;
+   
+  
+create table inside schema
+
+ CREATE TABLE [SCHEMA NAME].[TABLENAME](
+.....
+.
+.
+.
+);
+
+
+
+EX:-CREATE TABLE mySchema.COMPANY(
+ayasbase(# ID INT NOT NULL,
+ayasbase(# NAME TEXT NOT NULL,
+ayasbase(# AGE INT NOT NULL,
+ayasbase(# ADDRESS CHAR(25),
+ayasbase(# SALARY DECIMAL(18,2),
+ayasbase(# PRIMARY KEY(ID)
+ayasbase(# );
+
+ delete schema :-
+   DROP  SCHEMA [mySchema];
+      ex:DROP SCHEMA mySchema;
+ force deleting:-DROP SCHEMA mySchema CASCADE;
+
+
+
+Insertion data into table:-bracket thing will be in sequence terms
+
+   INSERT INTO {TABLE NAME}[(IN SEQUENCE KEYS)] VALUES [(VALUES FOR PARTICULAR KEY)]
+       EX:-INSERT INTO COMPANY(ID,NAME,AGE,ADDRESS,SALARY) VALUES (1, 'PAUL', 32, 'Texas', 1000.00);
+
+to see whole thing from the table:-
+
+
+   SELECT * FROM COMPANY;
+ 
+some queries and function in postgres.
+
+SELECT (15+2) as addition;
+
+SELECT (15*2) as addition;
+
+ SELECT COUNT(*) AS "RECORDS" FROM COMPANY;
+
+SELECT CURRENT_TIMESTAMP;
+ 
+more into select;-
+
+
+          (WHERE MEANS IF OR CONDITION):-
+
+SELECT * FROM COMPANY WHERE AGE>25 AND SALARY >=65000;
+
+SELECT * FROM COMPANY WHERE AGE>25 OR SALARY >=65000;
+
+SELECT * FROM COMPANY WHERE AGE IS NOT NULL;
+
+
+
+SELECT * FROM COMPANY WHERE NAME LIKE 'P%';  //it's means it return all name which start from p
+
+
+SELECT * FROM COMPANY WHERE NAME LIKE 'P_UL';//it show the name with ha anything in the underscore but all other words will be same;
+
+typecasting and query
+                     
+                   (:: IT MEANS CONVERT THE VARIABLE TO PARTICULAR DATATYPE)
+SELECT * FROM COMPANY WHERE SALARY::TEXT LIKE '200%';
+
+
+
+SELECT * FROM COMPANY WHERE AGE BETWEEN 25 AND 27;  //it will return all the records that age is between 25 and 27
+SELECT * FROM COMPANY WHERE AGE IN (25,27);
+     (BETWEEN AND IN are doing the same thing)
+
+SELECT * FROM COMPANY WHERE AGE NOT IN (25,27);
+
+
+
+update the table:-
+
+UPDATE COMPANY SET SALARY =150000 WHERE ID=3;
+
+
+UPDATE COMPANY SET ADDRESS='TEXAS',SALARY=20000 WHERE ID=2;
+
+
+delete the particular row
+
+
+DELETE FROM COMPANY WHERE  ID=2;
+
+
+forign keys:- are the connector which transfer data from one table to another table 
+ 
+primary key:- it is a special identifier key to excess a particular row
+    
+Step 1;- Create two table 
+
+      1)
+           CREATE TABLE customers(
+           customer_id INT NOT NULL,
+           customer_name VARCHAR(255) NOT NULL,
+           PRIMARY KEY (customer_id)
+           );
+  // In the second table we use constratint and other command to connect 
+       2) 
+           CREATE TABLE contacts(
+           contact_id INT NOT NULL,
+           customer_id INT,
+           contact_name VARCHAR(255) NOT NULL,
+           phone VARCHAR(15),
+           email VARCHAR(100),
+           PRIMARY KEY(contact_id)
+
+           CONSTRAINT fk_customer  //isme ek constrain hai jisko hmne fk_customer kha hai
+           FOREIGN KEY(customer_id)// cutomer_id yeah pr contact wali hai jo foreign key ke andr hai
+           REFERENCES customers(customer_id)//iska reference hm customers wali table ke customer_id se le rhe hai.
+           ON DELETE CASCADE   //(funtions ) iska mtlb hai agar yeah pr customer_id delete ho to customers wali customer_id delete kr do
+           );
+
+          
+
+    
+points:- 1)We will connect two table by customer_id(foreign key)
+         2)In both table custome_id value will be same
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# `Redis Basics`
+
+
+## Installation 
+
+    1.For Windows
+        
+        - Enable WSL from "Turn Windows features on or off settings"
+        - Restart the machine
+	    - Install Ubuntu20.04 from Windows Store
+	    - Open Ubuntu and setup name and password
+	    - Run the following commands:
+		      > sudo apt-get update
+		      > sudo apt-get upgrade
+		      > sudo apt-get install redis-server
+		      > sudo service redis-server restart
+		      > redis-cli
+
+     2) For Linux
+
+	     - Run the commands:
+		      > sudo apt-get install redis-server
+		      > sudo service redis-server restart
+		      > redis-cli
+      
+***
+
+# ***REDIS COMMAND***
+***
+## General 
+  
+  - **SET key value**           </br >  `sets value in json form` 
+  
+   - **GET  key**               </br  > ` Display value of particular key`
+
+   - **ttl key**      </br> ` Shows remaining time of key before exiration    (ttl :- time to live) ` 
+
+   - **KEYS***   </br> `Displays all the Keys`
+
+   - **DEL key** </br> `Delete the Particular Key`
+
+   - **FLUSHALL** </br> `Delete All Keys`
+
+   - **EXISTS key** </br> ` Display 1 if it exists otherwise 0`
+
+   - **EXPIRE key time** </br > `Delete paricular Existing key after t seconds `
+
+- **SETEX key time value** </br> `Creates the key with vlaue and expiration time t `
+
+- **PING "String"** </br > `To Display Message`
+
+
+
+***
+
+
+
+
+## FOR ARRAYS
+
+  - **LPUSH Array Value** </br> `Adds Element(value) in the array from Left(start)`
+
+- **RPUSH Array Value** </br> `Adds Element(value) in the array from the right(end) `
+
+- **LPOP key** </br> ` Deletes Element from left`
+
+- **RPOP key** </br> `Deletes Element from right`
+
+- **LRANGE Array start[0] stop[-1]** </br> `Displays Every Element in the key`
+
+
+**NOTE:-** ` GET key cannot be used in case of array because it operates on strings.So we use LRANGE `
+
+***
+
+## FOR SETS
+
+
+- **SADD Key Value** </br> `Adds elements in the set, can't push dupliacte values`
+
+- **SMEMBERS  Key**</br>`Displays All values`
+
+
+***
+
+
+## FOR OBJECT/HASH
+
+- **HSET key field value** </br> `Creates object key having field f with value v`
+
+- ** HGET key field** </br> `Display Value of the field inside key`
+
+- **HDEL key field** </br> `Delete the field`
+
+- **HGETALL key** </br> `Display each field value pairs of the object key`
+
+-  **HEXISTS key** </br> `To check the field exists or not`
+
+***
+
+
+
+
+
+# Backend-Devnest-THA
+This is for backend assignment purpose in the devnest.
+

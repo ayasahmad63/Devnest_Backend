@@ -1,0 +1,11 @@
+console.log(__dirname); -> it will show the complete path of the static file
+
+
+res.sendFile('file path','name at the which the server is shown')
+   file path=path.join(__dirname, "public/Hello.txt"), 'test.txt'
+
+jade:-It is the smaller version of the html in which we define variables and sent to the server
+
+
+npm i -s jade
+

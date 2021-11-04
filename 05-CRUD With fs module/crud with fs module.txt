@@ -1,0 +1,49 @@
+node js is a scripting language.
+
+ in nodejs we can apply any javascript program
+
+Modules in Nodjs
+  :- var fs=require("fs");
+
+var fs=require("fs");
+
+nodejs have acces and change the folder :-
+
+like to make new folder:-fs.mkdirSync('day_1');
+
+to make file:-fs.writeFileSync("day_1/hello.txt","Hello awsome people",(err)=>{
+... if(err){
+..... console.log(err);
+..... }
+... });
+
+
+Append  in file :-
+   fs.appendFileSync("day_1/hello.txt","appended");
+
+read the file:-
+    fs.readFileSync("day_1/hello.txt");
+        Now you will get the buffer (buffer is for better performance like it break into some code and you will read it line by
+ line.)
+     
+    To read the buffer line we must use "utf-8" it convert it into english :-
+      fs.readFileSync("day_1/hello.txt");
+
+rename file:-
+   fs.renameSync("day_1/hello.txt","day_1/hello1.txt");
+
+delete folder:-
+
+   we can't delete whole folder directly,firstly we have to delete the file then folder
+      To delete file:-
+             fs.unlinkSync("day_1/hello1.txt");
+           Now to delete folder :-
+                  fs.rmdirSync('day_1');      
+
+  ///////This is called repl method  (repl:-read execute print loop //
+
+To work in multiple files:-
+
+  
+              
+               

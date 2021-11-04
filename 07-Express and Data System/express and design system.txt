@@ -1,0 +1,26 @@
+npm init  //makes package.json after asking by you
+
+
+npm install --save express
+
+npm install --save-dev nodemon   // --save-dev save the file in the devDependencies whereas --save save the file in Dependencies
+        
+            devDependencies :-on local it is development environment.so the module we need in production will be put init.
+            Dependencies:-on server it is known production environment.
+
+
+nodemon:- it is used to see the changes which we done automatically
+
+   we run nodemon index.js
+
+Insid index.js
+ 
+express call the function definition.
+
+
+
+
+
+
+
+           
