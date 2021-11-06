@@ -14,6 +14,10 @@ var register = require('../controllers/register')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  const sess = req.session;
+  sess.username = 'ayas';
+  
+  
   res.render('index', { title: 'Express' });
 });
 
